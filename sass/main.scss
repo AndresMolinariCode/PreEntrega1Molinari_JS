@@ -128,23 +128,23 @@ body {
 }
 
 
-.container {
-    text-align: center;
+// .container {
+//     text-align: center;
 
-    @media (max-width: 768px) {
-        .schedule-grid {
-          display: block;
-          text-align: center;
-          grid-template-columns: 1fr;
-        }
+//     @media (max-width: 768px) {
+//         .schedule-grid {
+//           display: block;
+//           text-align: center;
+//           grid-template-columns: 1fr;
+//         }
 
-        .time-cell,
-        .day-cell {
-          border: none;
-          padding: 5px;
-        }       
-    }
-}
+//         .time-cell,
+//         .day-cell {
+//           border: none;
+//           padding: 5px;
+//         }       
+//     }
+// }
 
 //Formato de texto SOBRE NOSOTROS
 .text-center{
@@ -172,6 +172,20 @@ p {
       display: flex;
       flex-direction: column;
       align-items: center;
+  }
+}
+
+.background-image-container {
+  // ...
+
+  .container {
+    @media (max-width: 576px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      //height: 100vh; // Ajusta la altura para centrar verticalmente
+    }
   }
 }
 
