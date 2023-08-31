@@ -1,5 +1,5 @@
 //CODIGO PARA MOSTRAR GRILLA DE PRODUCTOS Y AGREGAR PRODUCTOS AL CARRO
-//INICIO
+//---------------------------------------->INICIO<----------------------------------------
 //Uso de constantes
 const products = [
   // Aquí se agregan los productos a ser listados  
@@ -20,8 +20,7 @@ const products = [
       title: 'Producto 3',
       description: 'Descripción del Producto 3',
       price: 29.99
-  },
-  
+  },  
 ];
 
 const productGrid = document.getElementById('productGrid');
@@ -64,42 +63,51 @@ function addToCart(index) {
   }
 }
 
-//FIN
+//---------------------------------------->FIN<----------------------------------------
 
 //CODIGO PARA CUMPLIMIENTO DE REQUISITOS DE PRE ENTREGA
 //INICIO
 
 //-->CREACION DE FUNCIONES<--
 function finalizarCompra() {
-
     ////-->USO DE FUNCIONES DECLARADAS POSTERIORMENTE <--
-    const nombreUsuario = pedirNombre();
+    const totalCompra = calcularTotalCompra();
 
     //-->USO DE CONDICIONALES<--
-    if (nombreUsuario !== null) {
-        alert(`Hola, ${nombreUsuario}! Vamos a finalizar la compra.`);
+    if (totalCompra <= 0) {
+        alert("El total de la compra debe ser mayor a cero. Agrega productos al carrito antes de finalizar la compra.");
+        return;
     }
+    else{
+        ////-->USO DE FUNCIONES DECLARADAS POSTERIORMENTE <--
+        const nombreUsuario = pedirNombre();
 
-    const medioPagoSeleccionado = solicitarMedioDePago();
-    
-    if (medioPagoSeleccionado !== null) {
-        let mensaje = `Has seleccionado: ${medioPagoSeleccionado}`;
+        //-->USO DE CONDICIONALES<--
+        if (nombreUsuario !== null) {
+            alert(`Hola, ${nombreUsuario}! Vamos a finalizar la compra.`);
 
-        // Calcular el total de la compra si el pago es efectivo/débito
-        if (medioPagoSeleccionado === "Efectivo/Débito") {
-            const totalCompra = calcularTotalCompra();
-            mensaje += `\nTotal de la compra: $${totalCompra.toFixed(2)}`;
-        } else if (medioPagoSeleccionado.startsWith("Tarjeta de Crédito")) {
-            const cuotas = obtenerCantidadCuotas(medioPagoSeleccionado);
-            const totalCompra = calcularTotalCompra();
-            const precioPorCuota = totalCompra / cuotas;
-            mensaje += `\nTotal de la compra: $${totalCompra.toFixed(2)}`;
-            mensaje += `\nCantidad de cuotas: ${cuotas}`;
-            mensaje += `\nPrecio por cuota: $${precioPorCuota.toFixed(2)}`;
-        }
+            const medioPagoSeleccionado = solicitarMedioDePago();
+        
+        if (medioPagoSeleccionado !== null) {
+            let mensaje = `Has seleccionado: ${medioPagoSeleccionado}`;
 
-        alert(mensaje);       
-    }    
+            // Calcular el total de la compra si el pago es efectivo/débito
+            if (medioPagoSeleccionado === "Efectivo/Débito") {
+                const totalCompra = calcularTotalCompra();
+                mensaje += `\nTotal de la compra: $${totalCompra.toFixed(2)}`;
+            } else if (medioPagoSeleccionado.startsWith("Tarjeta de Crédito")) {
+                const cuotas = obtenerCantidadCuotas(medioPagoSeleccionado);                
+                const precioPorCuota = totalCompra / cuotas;
+                mensaje += `\nTotal de la compra: $${totalCompra.toFixed(2)}`;
+                mensaje += `\nCantidad de cuotas: ${cuotas}`;
+                mensaje += `\nPrecio por cuota: $${precioPorCuota.toFixed(2)}`;
+            }
+
+                alert(mensaje);  
+                cart.length = 0;                   
+            }
+        } 
+    }        
 }
 
 function pedirNombre() {
