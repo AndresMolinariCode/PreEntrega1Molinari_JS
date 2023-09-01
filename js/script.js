@@ -103,13 +103,15 @@ function finalizarCompra() {
                 mensaje += `\nPrecio por cuota: $${precioPorCuota.toFixed(2)}`;
             }
 
-                alert(mensaje);  
+                alert(mensaje); 
+                alert('Compra finalizada con exito. Gracias por su preferencia!'); 
                 cart.length = 0;                   
             }
         } 
     }        
 }
 
+//Solcita el nombre al cliente, se valida que no se vacio y que solo tenga letras
 function pedirNombre() {
     let nombre = "";
     let valido = false;
@@ -135,6 +137,7 @@ function pedirNombre() {
     return nombre;
 }
 
+//Funcioón que solicita el medio de pago para la compra
 function solicitarMedioDePago() {
     let medioPago = "";
     let valido = false;
